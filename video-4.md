@@ -20,10 +20,10 @@ create table usuarios(
 );
 ```
 
->[!nota]
+>[!note]
 >Si intentamos crear una tabla con un nombre ya existente, mostrará un mensaje indicando que ya hay un objeto llamado 'usuarios' en la base de datos y la sentencia no se ejecutará.
 
->[!important] Importante
+>[!important]
 >- Cada campo con su tipo debe separarse con una coma, a excepción del ultimo.
 >- Los nombres de las tablas pueden usar cualquier carácter permitido para crear directorios (carpetas), el primer carácter debe ser un carácter alfabético y no puede contener espacios. La longitud maxima es de 128 caracteres.
 
