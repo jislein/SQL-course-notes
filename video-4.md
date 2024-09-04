@@ -41,7 +41,7 @@ drop table usuarios;
 
 Cuando intentamos eliminar una tabla que no existe nos marca el siguiente error: 
 
-![[./images/Pasted_image_20240904054756.png]]
+![image](./images/Pasted_image_20240904054756.png)
 
 Para evitar esto podemos utilizar lo siguiente:
 
@@ -59,7 +59,7 @@ Para ver todas las tablas dentro de una base de datos:
 exec sp_tables;
 ```
 
-![[./images/Pasted_image_20240904044540.png]]
+![image](./images/Pasted_image_20240904044540.png)
 
 Para mostrar solo las tablas de un dueño (table_owner) en especifico:
 
@@ -72,7 +72,7 @@ Esto mostraria solo las tablas donde el dueño sea dbo.*/
 exec sp_tables @table_owner='dbo';
 ```
 
-![[./images/Pasted_image_20240904045302.png]]
+![image](./images/Pasted_image_20240904045302.png)
 
 Para mostrar la estructura de una tabla usamos:
 
@@ -84,5 +84,5 @@ exec sp_columns NOMBRETABLA;
 exec sp_columns usuarios;
 ```
 
-![[./images/Pasted_image_20240904052105.png]]
+![image](./images/Pasted_image_20240904052105.png)
 
