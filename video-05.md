@@ -19,7 +19,7 @@ select * from usuarios;
 
 El comando `select` recupera los registros de una tabla. Con el asterisco indicamos que muestre todos los campos de la tabla `usuarios`.
 
-![alt text](image.png)
+![alt text](/images/image.png)
 
 Es importante ingresar los valores en el mismo orden en el que se nombran los campos. Por ejemplo:
 
