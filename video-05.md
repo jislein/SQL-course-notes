@@ -1,6 +1,6 @@
 # Explorando la Sentencia INSERT
 
-Sintaxis basica para agregar un registro de datos con `INSERT`:
+Sintaxis básica para agregar un registro de datos con `INSERT`:
 ```sql
 insert into NOMBRETABLA (NOMBRECAMPO1, NOMBRECAMPO2, ... , NOMBRECAMPOn) values (VALORCAMPO1, VALORCAMPO2, ... , VALORCAMPOn);
 
@@ -19,7 +19,7 @@ select * from usuarios;
 
 El comando `select` recupera los registros de una tabla. Con el asterisco indicamos que muestre todos los campos de la tabla `usuarios`.
 
-![alt text](/images/image.png)
+![alt text](./images/image.png)
 
 Es importante ingresar los valores en el mismo orden en el que se nombran los campos. Por ejemplo:
 
