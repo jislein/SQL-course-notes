@@ -21,7 +21,7 @@ primary key(nombre_campo_1, nombre_campo_2, ..., nombre_campo_n)
 
 Luego de haber establecido un campo como clave primaria, al ingresar los registros, SQL Server controla que los valores para el campo establecido como clave primaria no esten repetidos en la tabla; si estuviesen repetidos, muestra un mensaje y la insercion no se realiza. Es decir, si en nuestra tabla `usuarios` ya existe un usuario con nombre `"juanperez"` e intentamos ingresar un nuevo usuario con nombre `"juanperez"`, aparece un mensaje y la instruccion `insert` no se ejecuta.
 
-Igualmente, si realizamos una actualizacion, SQL Server controla que los valores para el campo establecido como clave primaria no esten repetidos en la tabla, si lo estuviese, aparece un mensaje indicando que se viola la clave primaria y la actualizacion no se realiza.
+Igualmente, si realizamos una actualización, SQL Server controla que los valores para el campo establecido como clave primaria no estén repetidos en la tabla, si lo estuviese, aparece un mensaje indicando que se viola la clave primaria y la actualización no se realiza.
 
 ### Ejemplos
 

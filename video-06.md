@@ -1,6 +1,6 @@
 # Explorando SELECT y la Cláusula WHERE para Recuperación de Registros
 
-## Recuperar campos especificos (`select`)
+## Recuperar campos específicos (`select`)
 
 Para ver todos los registros de una tabla utilizamos `select`.
 
@@ -8,15 +8,15 @@ Para ver todos los registros de una tabla utilizamos `select`.
 select * from nombre_tabla;
 ```
 
-El asterisco (*) indica que se seleccioonan todos los campos de la tabla.
+El asterisco (*) indica que se seleccionan todos los campos de la tabla.
 
-Tambien podemos especificar el nombre de los campos que queremos ver separandolos por comas:
+Tambien podemos especificar el nombre de los campos que queremos ver separándolos por comas:
 
 ```sql
 select nombre_campo_1, nombre_campo_2 from nombre_tabla;
 ```
 
-### Explicacion
+### Explicación
 
 #### Data necesaria
 
@@ -91,11 +91,11 @@ Para agregar un comentario y que no lo tenga en cuenta el servidor SQL Server de
 ```
 
 >[!hint]
->Dentro del SQL Server Management Studio podemos posicionarnos en una linea y precionar `Ctrl + C` y se comentará la linea completa.
+>Dentro del SQL Server Management Studio podemos posicionarnos en una linea y presionar `Ctrl + C` y se comentará la linea completa.
 
 ## Recuperar algunos registros (`where`)
 
-Existe una cláusula, `where` con la cual podemos especificar condiciones para una consulta `select`. Esto quiere decir que podemos recuperar algunos registros que cumpland con ciertas condiciones indicadas en la cláusula `where`. Por ejemplo, queremos ver el usuario cuyo nombre es "Marcelo", para ello utilizamos `where` y luego de ella, la condición.
+Existe una cláusula, `where` con la cual podemos especificar condiciones para una consulta `select`. Esto quiere decir que podemos recuperar algunos registros que cumplan con ciertas condiciones indicadas en la cláusula `where`. Por ejemplo, queremos ver el usuario cuyo nombre es "Marcelo", para ello utilizamos `where` y luego de ella, la condición.
 
 Sintaxis:
 
@@ -136,11 +136,11 @@ insert into usuarios (nombre, clave)
     values ('Luis', 'River');
 ```
 
-#### Explicacion y ejemplos
+#### Explicación y ejemplos
 
 Para las condiciones se utilizan operadores relacionales. El signo igual (`=`) es un operador relacional.
 
-Para la siguiente seleccion de registros especificamos una condicion que solicita a los usuarioos cuya clave es igual a `'River'`:
+Para la siguiente selección de registros especificamos una condición que solicita a los usuarios cuya clave es igual a `'River'`:
 
 ```sql
 select nombre,clave
@@ -185,11 +185,11 @@ De momento solo veremos los relacionales los cuales son los siguientes:
 `=` - igual a...
 `<>` - distinto/diferente de...
 `>` - mayor que...
-`<` - menr que...
+`<` - menor que...
 `>=` - mayor o igual a...
 `<=` - menor o igual a...
 
-### Explicacion
+### Explicación
 
 #### Datos necesarios
 

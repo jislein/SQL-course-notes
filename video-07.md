@@ -8,9 +8,9 @@ Para eliminar registros de una tabla usamos el comando `delete`:
 delete from nombre_tabla;
 ```
 
-Este muestra un mensaje indicando la cantidad de registros que ha eliminado. Si no queremos eliminar todos los registros sino solamente algunos, debemos indicar cual o cuales, para ello utilizamos el comando `delete` junto con la clausula `where` con la cual establecemos la condicion que deben cumplir los registros a borrar.
+Este muestra un mensaje indicando la cantidad de registros que ha eliminado. Si no queremos eliminar todos los registros sino solamente algunos, debemos indicar cual o cuales, para ello utilizamos el comando `delete` junto con la clausula `where` con la cual establecemos la condición que deben cumplir los registros a borrar.
 
-Por ejemplo queremos eliminar aque registro cuyo nombre de usuario es `"Marcelo"`:
+Por ejemplo queremos eliminar aquel registro cuyo nombre de usuario es `"Marcelo"`:
 
 ```sql
 delete from usuarios
@@ -19,7 +19,7 @@ where nombre="Marcelo";
 
 ### Explicación y Ejemplos
 
-Si solicitamos el borrado de un registro que no existe, es decir, ningun registro cumple con la condicion especificada, ningun registro será eliminado.
+Si solicitamos el borrado de un registro que no existe, es decir, ningún registro cumple con la condición especificada, ningún registro será eliminado.
 
 >[!important]
 >Debemos tener en cuenta que si no colocamos una condicion, se eliminaran todos los registros de la tabla nombrada.
@@ -106,7 +106,7 @@ Si Microsoft SQL Server no encuentra registros que cumplan con la condicion del 
 >[!important]
 >Las condiciones no son obligatorias, pero si omitimos la clausula `where`, la actualizacion afectara a todos los registros.
 
-Tambien podemos actualizar varios campos en una sola instruccion:
+Tambien podemos actualizar varios campos en una sola instrucción:
 ```sql
 update nombre_tabla set nombre_campo1=nuevo_valor1, nombre_campo2=nuevo_valor2
     where nombre_campo=valor_campo;

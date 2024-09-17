@@ -2,7 +2,7 @@
 
 Null significa dato desconocido o valor inexistente. No es lo mismo que un valor sea 0 o una cadena vacia a que sea literalmente nulo.
 
-## Explicacion y Ejemplos
+## Explicación y Ejemplos
 
 ### Data Necesaria
 
@@ -16,7 +16,7 @@ if object_id('libros') is not null
 
 ### Ejemplos
 
-Tenemos nuestra tabla "libros". El campo titulo no deberia estar vacio nunca, igualmente el campo "autor".
+Tenemos nuestra tabla "libros". El campo titulo no debería estar vacío nunca, igualmente el campo "autor".
 
 Para ello, al crear la tabla, debemos especificar que dichos campos no admitan valores nulos:
 
@@ -29,7 +29,7 @@ create table libros(
 );
 ```
 
-Para especificar que un campo no admita valores nulos, debemos colocar `not null` luego de la definicio del campo. En el ejemplo anterior, los campos `editorial` y `precio` si admiten valores nulos.
+Para especificar que un campo no admita valores nulos, debemos colocar `not null` luego de la definición del campo. En el ejemplo anterior, los campos `editorial` y `precio` si admiten valores nulos.
 
 Cuando colocamos `null` estamos diciendo que admite valores nulos (caso del campo `editorial`) por defecto, es decir, si no lo aclaramos, los campos permiten valores nulos (caso del campo `precio`).
 
