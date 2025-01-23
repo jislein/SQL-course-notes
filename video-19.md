@@ -5,7 +5,7 @@
 Podemos comparar trozos de cadenas de caracteres para realizar consultas. Para recuperar todos los registros cuyo autor contenga la cadena `"Borges"` debemos tipear:
 ```sql
 select * from libros
-    where autor like '%Borges%';
+where autor like '%Borges%';
 ```
 
 El símbolo `%` (porcentaje) reemplaza cualquier cantidad de caracteres (incluyendo ningún carácter). Es un carácter comodín. `like` y `no like` son operadores de comparación que señalan igualdad o diferencia.
