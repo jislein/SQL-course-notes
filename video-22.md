@@ -52,40 +52,47 @@ insert into libros
 insert into libros
     values('Uno', 'Richard Bach', 'Planeta');
 ```
+![alt text](images/video-22/image-1.png)
 
 Con la cláusula `distinct` se especifica que los registros con ciertos datos duplicados sean obviadas en el resultado. Por ejemplo, queremos conocer todos los autores de los cuales tenemos libros, si utilizamos esta sentencia:
 ```sql
 select autor from libros;
 ```
+![alt text]images/video-22/(image.png)
 
 Aparecen repetidos. Para obtener la lista de autores sin repeticion:
 ```sql
 select distinct autor from libros;
 ```
+![alt text](images/video-22/image-2.png)
 
 Tambien podemos tipear:
 ```sql
 select autor from libros
     group by autor;
 ```
+![alt text](images/video-22/image-3.png)
 
 Note que en los tres casos anteriores aparece `null` como valor para `autor`. Si solo queremos la lista de autores conocidos, es decir, no queremos incluir `null`en la lista, podemos utilizar la sentencia siguiente:
 ```sql
 select distinct autor from libros
     where autor is not null;
 ```
+![alt text](images/video-22/image-4.png)
 
 Para contar los distintos autores, sin considerar el valor `null` usamos:
 ```sql
 select count(distinct autor)
     from libros;
 ```
+![alt text](images/video-22/image-5.png)
 
 Note que si contamos los autores sin `distinct`, no incluirá los valores `null` pero si los repetidos:
 ```sql
 select count(autor)
     from libros;
 ```
+![alt text](images/video-22/image-6.png)
 
 Esta sentencia cuenta los registros que tienen autor.
 
@@ -94,6 +101,7 @@ Podemos combinarla con `where`. Por ejemplo, queremos conocer los distintos auto
 select distinct autor from libros
     where editorial='Planeta';
 ```
+![alt text](images/video-22/image-7.png)
 
 Tambien puede utitlizarse con `group by` para contar los diferentes autores por editorial:
 ```sql
@@ -101,6 +109,7 @@ select editorial, count(distinct autor)
     from libros
     group by editorial;
 ```
+![alt text](images/video-22/image-8.png)
 
 La cláusula `distinct` afecta a todos los campos presentados. Para mostrar los titulos y editoriales de los libros sin repetir titulos ni editoriales, usamos:
 ```sql
@@ -108,6 +117,7 @@ select distinct titulo,editorial
     from libros
     order by titulo;
 ```
+![alt text](images/video-22/image-9.png)
 
 Note que los registros no están duplicados, aparecen títutlos iguales pero con editorial diferente, cada registro es diferente.
 
@@ -144,6 +154,7 @@ insert into libros values ('Java en 10 minutos', 'Mario Molina', 'Siglo XXI');
 insert into libros values ('Java desde cero', 'Mario Molina', 'Emece');
 insert into libros values ('Ilusiones', 'Richard Bach', 'Planeta');
 ```
+![alt text](images/video-22/image-10.png)
 ---
 
 La palabra clave `top` se emplea para obtener sólo una cantidad limitada de registros, los primeros `n` registros de una consulta.
@@ -152,6 +163,7 @@ Con la siguiente consulta obtenemos todos los datos de los primeros 2 libros de 
 ```sql
 select top 2 * from libros;
 ```
+![alt text](images/video-22/image-11.png)
 
 Es decir, luego del `select` se coloca `top` seguido de un número entero positivo y luego continúa con la consulta.
 
@@ -161,6 +173,7 @@ select top 3 titulo, autor
     from libros
     order by autor;
 ```
+![alt text](images/video-22/image-12.png)
 
 En la consulta anterior solicitamos los títulos y autores de los 3 primeros libros, ordenados por autor.
 
@@ -172,6 +185,7 @@ select top 3 with ties
     * from libros
     order by autor;
 ```
+![alt text](images/video-22/image-13.png)
 
 Esta consulta solicita el retorno de los primeros 3 registros; en caso que el registro número 4 (y los posteriores), tengan el mismo valor en `autor` que el último registro retornado (número 3) tambien apareceran en la selección.
 
@@ -181,6 +195,7 @@ select top 50 percent
     * from libros
     order by autor;
 ```
+![alt text](images/video-22/image-14.png)
 
 Se recuperan la mitad de los registros de la tabla `libros`.
 

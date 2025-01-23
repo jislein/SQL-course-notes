@@ -1,3 +1,9 @@
+# Indice
+
+[Introducción](#sql-joins-diferencias-entre-innerleftrightoutercross-joins)
+[Combinacion interna (`inner join`)](#combinacion-interna-inner-join)
+
+
 # SQL Joins: Diferencias Entre Inner/Left/Right/Outer/Cross Joins
 
 Un `join` es una operación que relaciona dos o más tablas para obtener un resultado que incluya datos (campos y registros) de ambas; las tablas participantes se combinan según los campos comunes a ambas tablas.
@@ -59,6 +65,7 @@ insert into libros values('Java en 10 minutos',default,3,45);
 select * from libros
     join editoriales on codigoeditorial=editoriales.codigo;
 ```
+![alt text](images/video-23/image.png)
 
 Analicemos la consulta anterior.
 
@@ -89,10 +96,11 @@ from libros as l
 join editoriales as e
 on l.codigoeditorial=e.codigo;
 ```
+![alt text](images/video-23/image-1.png)
 
-en algunos casos (como en este ejemplo) el uso de alias es para fines de simplificacion y ace ,as legible la consulta si es larga y compleja, pero en algunas consultas es absolutamente necesario.
+En algunos casos (como en este ejemplo) el uso de alias es para fines de simplificacion y ace ,as legible la consulta si es larga y compleja, pero en algunas consultas es absolutamente necesario.
 
-## Combinacion externa
+## Combinacion externa 
 
 Vimos que una combinacion interna (`join`) encuentra registros de la primera tabla que se correspondan con los registros de la segunda, es decir, que cumplan la condicion del `on` y si un valor de la primera tabla no se encuentra en la segunda tabla, el registro no aparece.
 
@@ -150,6 +158,7 @@ select l.titulo,e.nombre
 from editoriales as e
 left join libros as l on l.codigoeditorial = e.codigo;
 ```
+![alt text](images/video-23/image-2.png)
 
 El resultado mostrara el titulo y el nombre de la editorial; las editoriales de las cuales no hay libros, es decir cuyo codigo de editorial no este presente en `libros` aparece en el resultado, pero con el valor `null` en el campo `titulo`.
 
@@ -167,13 +176,14 @@ select CAMPOS
 
 En el siguiente ejemplo solicitamos el título y el nombre de la editorial, la sentencia es similar a la anterior, la diferencia está en el orden de las tablas:
 ```sql
-select from titulo,nombre
+select titulo,nombre
     from libros as l
     left join editoriales as  e
     on l.codigoeditorial = e.codigo;
 ```
+![alt text](images/video-23/image-3.png)
 
-El resultado mostrará el título del libro y el nombre de la editorial no está presente en `editoriales` aparecen en el resultado, pero con un valor `null` en el campo `nombre`.
+El resultado mostrará el título del libro y el nombre de la editorial que no está presente en `editoriales` aparecen en el resultado, pero con un valor `null` en el campo `nombre`.
 
 Un `left join` puede tener cláusula `where` que restrinja el resultado de la consulta considerando solamente los registros que encuentran coincidencia en la tabla de la derecha, es decir, cuyo valor de código está presente en `libros`:
 ```sql
@@ -183,6 +193,7 @@ left join libros as l
 on e.codigo = l.codigoeditorial
 where l.codigoeditorial is not null;
 ```
+![alt text](images/video-23/image-4.png)
 
 También podemos mostrar las editoriales que **NO** estan presentes en `libros`, es decir, que **NO** encuentran coincidencia en la tabla de la derecha:
 ```sql
@@ -192,6 +203,7 @@ left join libros as l
 on e.codigo = l.codigoeditorial
 where l.codigoeditorial is null;
 ```
+![alt text](images/video-23/image-5.png)
 
 ### `right join`
 
@@ -210,6 +222,7 @@ from editoriales as e
 full join libros as l
 on codigoeditorial = e.codigo;
 ```
+![alt text](images/video-23/image-6.png)
 
 La salida del `full join` precedente muestra todos los registros de ambas tabalas, incluyendo los libros cuyos `codigo` de editorial no existen en la tabla `editoriales` y las editoriales de las cuales no hay correspondencia en `libros`.
 
@@ -258,7 +271,7 @@ insert into comidas values('milanesa',7);
 insert into comidas values('cuarto de pollo',6);
 
 insert into postres values('flan',2.5);
-insert into postres values('porcion torta',3.5)
+insert into postres values('porcion torta',3.5);
 ```
 
 Veamos un ejemplo. Un perqueo restaurante almacena los nombres y precios de sus comidas en una tabla llamada `comidas`. ye en una tabla denominada `postres` los mismos datos de sus postres.
@@ -269,6 +282,7 @@ select c.nombre as 'plato principal', p.nombre as 'postre'
 from comidas as c
 cross join postres as p;
 ```
+![alt text](images/video-23/image-7.png)
 
 La salida muestra cada plato combinado con cada uno de los postres.
 
@@ -278,14 +292,13 @@ Como cualquier tipo de `join`, puede emplearse una cláusula `where` que condici
 
 Data necesaria:
 ```sql
-
 if object_id('comidas') is not null
     drop table comidas;
 
 create table comidas(
     codigo int identity,
     nombre varchar(30),
-    precio decimal(4,2),I
+    precio decimal(4,2),
     rubro char(6),-- 'plato'=plato principal', 'postre'=postre 
     primary key(codigo)
 );
@@ -319,6 +332,7 @@ select c1.nombre as 'plato principal',
     from comidas as c1
     cross join comidas as c2;
 ```
+![alt text](images/video-23/image-8.png)
 
 En la consulta anterior aparecen filas duplicadas, para evitarlo debemos emplear un `where`:
 ```sql
@@ -329,6 +343,7 @@ select c1.nombre as 'plato principal',
     cross join comidas as c2
     where c1.rubro='plato' and c2.rubro='postre';
 ```
+![alt text](images/video-23/image-9.png)
 
 En la consulta anterior se empleó un `where`que especifica que se combine `"plato"` con `"postre"`.
 
@@ -343,6 +358,7 @@ select c1.nombre as 'plato principal',
     join comidas as c2 on c1.codigo<>c2.codigo
     where c1.rubro='plato' and c2.rubro='postre';
 ```
+![alt text](images/video-23/image-10.png)
 
 Para que no aparezcan filas duplicadas se agrega un `where`.
 
@@ -378,7 +394,7 @@ create table libros(
 
 create table editoriales(
     codigo tinyint identity,
-    nombre varcar(20),
+    nombre varchar(20),
     primary key (codigo)
 );
 
@@ -405,6 +421,7 @@ from editoriales as e
 join libros as l on codigoeditorial=e.codigo
 group by e.nombre;
 ```
+![alt text](images/video-23/image-11.png)
 
 Note que las editoriales que no tienen libros no aparecen en la salida porque empleamos un `join`.
 
@@ -416,6 +433,7 @@ from editoriales as e
 left join libros as l on codigoeditorial=e.codigo
 group by nombre;
 ```
+![alt text](images/video-23/image-12.png)
 
 En la sentencia anterior, mostrara, para la editoria la cual no aya libros, el valor `null` en la columna calculada.
 
@@ -423,7 +441,6 @@ En la sentencia anterior, mostrara, para la editoria la cual no aya libros, el v
 
 Data necesaria:
 ```sql
-
 if object_id('libros') is not null
     drop table libros;
 if object_id('autores') is not null
@@ -483,10 +500,11 @@ La libreria almacena los datos de sus libros en 3 tablas: `libros`, `editoriales
 Para recuperar todos los datos de los libros empleamos la siguiente consulta:
 ```sql
 select titulo,a.nombre,e.nombre
-from autories as a
+from autores as a
 join libros as l on codigoautor=a.codigo
 join editoriales as e on codigoeditorial=e.codigo;
 ```
+![alt text](images/video-23/image-13.png)
 
 Analicemos la consulta anterior. Indicamos el nombre de la tabla luego del `from` (`autores`), combinamos esa tabla con la tabla `libros` especificando con `on` el campo por el cual se combinaran; luego debemos hacer coincidir los valores para el enlace con la tabla `editoriales` enlazandolas por los campos correspondientes. Utilizamos alias para una sentencia mas sencilla y comprensible.
 
@@ -501,6 +519,8 @@ from autores as a
 right join libros as l on codigoautor=a.codigo
 left join editoriales as e on codigoeditorial=e.codigo;
 ```
+![alt text](images/video-23/image-14.png)
+
 En la consulta anterior solicitamos el titulo, autor y editorial de todods los libros que encuentren o no coincidencia con `autores` (`right join`) y a ese resultado lo combinamos con `editoriales`, encuentren o no coincidencia.
 
 Es posible realizar varias combinaciones para obtener informacion de varias tablas. Las tablas deben tener claves externas relacionadas con las tablas a combinar.
