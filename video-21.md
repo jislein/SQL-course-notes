@@ -1,6 +1,6 @@
 # Usos del `having` y su diferencia con `where`
 
- Así como la cláusula `whee` permite seleccionar (o rechazar) registros individuales, la cláusula `having` permite seleccionar (o rechazar) un grupo de registros.
+ Así como la cláusula `where` permite seleccionar (o rechazar) registros individuales, la cláusula `having` permite seleccionar (o rechazar) un grupo de registros.
 
  Una cláusula `having` en SQL especifica que una declaración SQL `select` solo debe devolver filas donde los valores agregados cumplan con las condiciones especificadas.
 
@@ -42,6 +42,7 @@ insert into libros
 insert into libros
 	values('Harry Potter y la camara secreta', 'J.K. Rowling', 'Emece', null,100);
 ```
+![alt text](images/video-21/image.png)
 
  Si queremos saber la cantidad de libros agrupados por editorial usamos la siguiente instruccion ya aprendida:
  ```sql
@@ -49,6 +50,7 @@ insert into libros
     from libros
     group by editorial;
 ```
+![alt text](images/video-21/image-1.png)
 
 Si queremos saber la cantidad de libros agrupados por editorial pero considerando solo algunos grupos, por ejemplo, los que devuelvan un valor mayor a 2, usamos la siguiente instruccion:
 ```sql
@@ -56,28 +58,31 @@ Si queremos saber la cantidad de libros agrupados por editorial pero considerand
     group by editorial
     having count(*)>2;
 ```
+![alt text](images/video-21/image-2.png)
 
 Se utiliza `having`, seguido de la condicion de busqueda,, para seleccionar ciertas filas retornadas por la cláusula `group by`.
 
 Veamos otros ejemplos. Queremos el promedio de los precios de los libros agrupados por `editorial`, pero solamente de aquellos grupos cuyo promedio supere los 25 pesos:
 ```sql
- select editorial, avg(precio) from libros
-    group by editorial
-    having avg(precio)>25;
+select editorial, avg(precio) from libros
+group by editorial
+having avg(precio)>25;
 ```
+![alt text](images/video-21/image-3.png)
 
 En algunos casos es posible confundir las cláusulas `where` y `having`. Queremos contar los registros agrupados por `editorial` sin tener en cuenta la editorial `"Planeta"`.
 
 Analicemos las siguientes sentencias:
 ```sql
- select editorial, count(*) from libros
-    where editorial<>"Planeta"
-    group by editorial;
+select editorial, count(*) from libros
+where editorial<>'Planeta'
+group by editorial;
 
 select editorial, count(*) from libros
-    group by editorial
-    having editorial<>"Planeta";
+group by editorial
+having editorial<>'Planeta';
 ```
+![alt text](images/video-21/image-4.png)
 
 Ambas devuelven el mismo resultado, pero son diferentes. La primera, selecciona todos los registros rechazando los de la editorial `"Planeta"` y luego los agrupa para contarlos. La segunda, selecciona todos los registros, los agrupa para contarlos y finalmente rechaza fila con la cuenta correspondiente a la editorial `"Planeta"`.
 
@@ -86,10 +91,11 @@ No debemos confundir la cláusula `where` con la cláusula `having`; la primera 
 Veamos otros ejemplos combinando `where` y `having`. Queremos la cantidad de libros, sin considerar los que tienen `precio` nulo, agrupados por `editorial`, sin considerar la editorial `"Planeta"`:
 ```sql
 select editorial, count(*) from libros
-    where precio is not null
-    group by editorial
-    having editorial<>"Planeta";
+where precio is not null
+group by editorial
+having editorial<>'Planeta';
 ```
+![alt text](images/video-21/image-5.png)
 
 Aqui, selecciona los registros rechazando los que no cumplan con la condicion dada en `where`, luego los agrupa por `editorial`y finalmente rechaza los grupos que no cumplan con la condicion dada en el `having`.
 
@@ -99,16 +105,19 @@ select editorial, avg(precio) from libros
 group by editorial
 having count(*) > 2;
 ```
+![alt text](images/video-21/image-6.png)
+
 En una cláusla `having` puede haber **hasta 128 condiciones**. Cuando utilice varias condiciones, tiene que combinarlas con operadores logicos (`and`, `or`, `not`).
 
 Podemos encontrar el mayor valor de los libros agrupados y ordenados por `editorial` y selecionar las filas que tengan un valor menor a `100` y mayor a `30`:
 ```sql
 select editorial, max(precio) as 'mayor'
-    from libros
-    group by editorial
-     having min(precio) < 100 and max(precio) < 30
-     order by editorial;
+from libros
+group by editorial
+having min(precio) < 100 and max(precio) < 30
+order by editorial;
 ```
+![alt text](images/video-21/image-7.png)
 
 Entonces usamos la cláusula `having` para restringir las filas que devuelve una salida `group by`. Va siempre despues de la cláusula `group by` y antes de la cláusula òrder by`si la hubiere.
 
